@@ -215,4 +215,23 @@ jQuery(document).ready(function($) {
 		})
 	};
 	searchShow();
+
+	$.ajax({
+		url: "http://127.0.0.1:8000/api/order/cart-items/",
+		dataType: 'json',
+		type: "GET",
+		"headers": {
+		  "Authorization": "Token " + $.cookie('token'),
+		},
+		xhrFields: {
+			withCredentials: true
+		},
+		crossDomain: true,
+		error: function (err) {
+		  console.log(err);
+		},
+		success: function (data) {
+			$('.number').html(data.count)
+		}
+	});
 });

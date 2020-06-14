@@ -106,7 +106,8 @@ Anyline.onResult = result => {
         showLoaderOnConfirm: true,
         html: `<div class="result">
                   <div class="resultRow">
-                  <input type="hidden" value="${product.id}" id="product_id">                  
+                  <input type="hidden" name="name" value="${product.name}" id="name">
+                  <input type="hidden" name="price" value="${product.price}" id="price">                  
                   <div class="resultLabel">${product.name}</div>   
                   <img style="with:200px;height:200px;" src="http://127.0.0.1:8000${product.image}" />               
                   <input type="number" name="quantity" id="quantity" class="form-control" placeholder="Quantity"></input>
@@ -120,41 +121,37 @@ Anyline.onResult = result => {
           modalOpen = false;
         },
         preConfirm: (login) => {
-          product_id = $('#product_id').val();
+          name = $('#name').val();
+          price = $('#price').val();
           quantity = $('#quantity').val();
           body = {
-            'products': product_id,
+            'name': name,
+            'price': price,
             'quantity': quantity
           }
           console.log(body)
           $.ajax({
-            url: "http://127.0.0.1:8000/api/shop/cart/",
+            url: "http://127.0.0.1:8000/api/order/cart-items/",
             dataType: 'json',
             data: body,
-            type: "PUT",
+            type: "POST",
             "headers": {
               "Authorization": "Token " + token
             },
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
             error: function (err) {
               console.log(err);
             },
-            success: function (product) {
+            success: function (data) {
+              $('.number').html(parseInt($('.number').html(), 10) + 1)
+              $('.number').html()
               console.log("success");
-              console.log(product);
+              console.log(data);
             }
           });
-          // return post("http://127.0.0.1:8000/api/shop/cart/")
-          //   .then(response => {
-          //     if (!response.ok) {
-          //       throw new Error(response.statusText)
-          //     }
-          //     return response.json()
-          //   })
-          //   .catch(error => {
-          //     Swal.showValidationMessage(
-          //       `Request failed: ${error}`
-          //     )
-          //   })
         },
       });
     }
