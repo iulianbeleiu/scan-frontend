@@ -230,7 +230,12 @@ jQuery(document).ready(function($) {
 		error: function (err) {
 		},
 		success: function (data) {
-			$('.number').html(data.count)
+			var results = data.results
+			var count = 0
+			for (var i = 0;i < results.length; i++) {
+				count += results[i].quantity
+			}
+			$('.number').html(count)
 		}
 	});
 });

@@ -31,7 +31,7 @@ $(document).ready(function () {
                     html += '<td>' + data.results[i].price + '</td>'
                     html += '<td>' + data.results[i].quantity + '</td>'
                     html += '<td>$' + total_price + '</td>'
-                    html += '<td><a href="#" class="btn btn-primary height-auto btn-sm remove-item" data-total='+total_price+' id="'+data.results[i].id+'">X</a></td>'
+                    html += '<td><a href="#" class="btn btn-primary height-auto btn-sm remove-item" data-quantity='+data.results[i].quantity+' data-total='+total_price+' id="'+data.results[i].id+'">X</a></td>'
                     html += '</tr>'
                     
                     $('#cartTable tbody').append(html)
@@ -45,8 +45,11 @@ $(document).ready(function () {
     $(document).on('click', '.remove-item', function () {
         alert('Are you sure you want to remove this item?');
         $(this).closest('tr').remove();
-        $('.number').html(parseInt($('.number').html(), 10) - 1)
+
+        var quantity = parseInt($(this).attr("data-quantity"));
+        $('.number').html(parseInt($('.number').html(), 10) - quantity)
         $('.number').html()
+
         cart_total = parseFloat($('#cart_total').val());
         cart_total -= parseFloat($(this).attr("data-total"));
         $('#cart_total').val(cart_total)

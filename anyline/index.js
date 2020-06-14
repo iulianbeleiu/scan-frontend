@@ -143,7 +143,7 @@ Anyline.onResult = result => {
             error: function (err) {
             },
             success: function (data) {
-              $('.number').html(parseInt($('.number').html(), 10) + 1)
+              $('.number').html(parseInt($('.number').html(), 10) + data.quantity)
               $('.number').html()
             }
           });
