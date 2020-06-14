@@ -2,6 +2,8 @@ $.cookie('api_base_url', 'http://127.0.0.1:8000');
 $(document).ready(function () {        
     (function ($) {
         "use strict";
+                
+        //add to cart
         $.ajax({
             url: "http://127.0.0.1:8000/api/order/cart-items/",
             dataType: 'json',
@@ -14,7 +16,7 @@ $(document).ready(function () {
             },
             crossDomain: true,
             error: function (err) {
-              console.log(err);
+              
             },
             success: function (data) {
                 var i = 0;
@@ -60,7 +62,6 @@ $(document).ready(function () {
             },
             crossDomain: true,
             error: function (err) {
-              console.log(err);
             }
         });        
     });

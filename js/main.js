@@ -228,7 +228,6 @@ jQuery(document).ready(function($) {
 		},
 		crossDomain: true,
 		error: function (err) {
-		  console.log(err);
 		},
 		success: function (data) {
 			$('.number').html(data.count)

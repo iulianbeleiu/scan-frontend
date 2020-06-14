@@ -94,7 +94,6 @@ Anyline.onResult = result => {
       "Authorization": "Token " + token
     },
     error: function (err) {
-      console.log(err)
     },
     success: function (product) {
       Anyline.startScanning();
@@ -129,7 +128,6 @@ Anyline.onResult = result => {
             'price': price,
             'quantity': quantity
           }
-          console.log(body)
           $.ajax({
             url: "http://127.0.0.1:8000/api/order/cart-items/",
             dataType: 'json',
@@ -143,20 +141,16 @@ Anyline.onResult = result => {
             },
             crossDomain: true,
             error: function (err) {
-              console.log(err);
             },
             success: function (data) {
               $('.number').html(parseInt($('.number').html(), 10) + 1)
               $('.number').html()
-              console.log("success");
-              console.log(data);
             }
           });
         },
       });
     }
   });
-  console.log('Result: ', result.result[1].text);
 };
 
 Anyline.onReport = msg => {

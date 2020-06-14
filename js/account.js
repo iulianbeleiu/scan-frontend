@@ -53,7 +53,6 @@ $(document).ready(function () {
                         dataType: 'json',
                         url: "http://127.0.0.1:8000/api/user/create/",
                         success: function (data) {
-                            console.log(data)
                             $('#createAccountForm :input').attr('disabled', 'disabled');
                             $('#createAccountForm').fadeTo("slow", 1, function () {
                                 $(this).find(':input').attr('disabled', 'disabled');

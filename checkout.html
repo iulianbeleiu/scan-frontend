@@ -25,8 +25,6 @@
 <body>
 
   <div class="site-wrap">
-
-
     <div class="site-navbar bg-white py-2 position-relative">
       <div class="container">
         <div class="d-flex align-items-center justify-content-between">
@@ -59,89 +57,37 @@
     </div>
 
     <div class="site-section">
-      <div class="container">        
-        <div class="row">
-          <div class="col-md-12">
-            <div class="row mb-5">
-              <div class="col-md-12">
-                <h2 class="h3 mb-3 text-black">Your Order</h2>
-                <div class="p-3 p-lg-5 border">
-                  <table class="table site-block-order-table mb-5">
-                    <thead>
-                      <th>Product</th>
-                      <th>Total</th>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Top Up T-Shirt <strong class="mx-2">x</strong> 1</td>
-                        <td>$250.00</td>
-                      </tr>
-                      <tr>
-                        <td>Polo Shirt <strong class="mx-2">x</strong> 1</td>
-                        <td>$100.00</td>
-                      </tr>
-                      <tr>
-                        <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
-                        <td class="text-black">$350.00</td>
-                      </tr>
-                      <tr>
-                        <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-                        <td class="text-black font-weight-bold"><strong>$350.00</strong></td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                  <div class="border p-3 mb-3">
-                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsebank" role="button"
-                        aria-expanded="false" aria-controls="collapsebank">Direct Bank Transfer</a></h3>
-
-                    <div class="collapse" id="collapsebank">
-                      <div class="py-2">
-                        <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as
-                          the payment reference. Your order won’t be shipped until the funds have cleared in our
-                          account.</p>
-                      </div>
+      <div class="container">
+        <form method="post" id="checkoutForm">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row mb-5">
+                <div class="col-md-12">
+                  <h2 class="h3 mb-3 text-black">Your Order</h2>
+                  <div class="p-3 p-lg-5 border">
+                    <table class="table site-block-order-table mb-5" id="checkoutTable">
+                      <thead>
+                        <th>Product</th>
+                        <th>Total</th>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <input type="hidden" name='total' id="checkout_total">
+                          <input type="hidden" name='completed' id="completed" value="1">
+                          <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
+                          <td class="text-black font-weight-bold"><strong id="checkoutTotal">$0</strong></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="form-group">
+                      <input type="submit" class="btn btn-primary btn-lg btn-block" value="Place Order">
                     </div>
                   </div>
-
-                  <div class="border p-3 mb-3">
-                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsecheque" role="button"
-                        aria-expanded="false" aria-controls="collapsecheque">Cheque Payment</a></h3>
-
-                    <div class="collapse" id="collapsecheque">
-                      <div class="py-2">
-                        <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as
-                          the payment reference. Your order won’t be shipped until the funds have cleared in our
-                          account.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="border p-3 mb-5">
-                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsepaypal" role="button"
-                        aria-expanded="false" aria-controls="collapsepaypal">Paypal</a></h3>
-
-                    <div class="collapse" id="collapsepaypal">
-                      <div class="py-2">
-                        <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as
-                          the payment reference. Your order won’t be shipped until the funds have cleared in our
-                          account.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <button class="btn btn-primary btn-lg btn-block" onclick="window.location='thankyou.html'">Place
-                      Order</button>
-                  </div>
-
                 </div>
               </div>
             </div>
-
           </div>
-        </div>
-        <!-- </form> -->
+        </form>
       </div>
     </div>
   </div>
@@ -154,6 +100,9 @@
   <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/aos.js"></script>
   <script src="js/jquery.cookie.js"></script>
+  <script src="js/jquery.form.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
+  <script src="js/checkout.js"></script>
 
   <script src="js/main.js"></script>
 
