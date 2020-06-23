@@ -108,7 +108,7 @@ Anyline.onResult = result => {
                   <input type="hidden" name="name" value="${product.name}" id="name">
                   <input type="hidden" name="price" value="${product.price}" id="price">                  
                   <div class="resultLabel">${product.name}</div>   
-                  <img style="with:200px;height:200px;" src="http://127.0.0.1:8000${product.image}" />               
+                  <img style="with:200px;height:200px;" src="${api_base_url + product.image}" />               
                   <input type="number" name="quantity" id="quantity" class="form-control" placeholder="Quantity"></input>
                 </div>
           </div>`,
@@ -129,7 +129,7 @@ Anyline.onResult = result => {
             'quantity': quantity
           }
           $.ajax({
-            url: "http://127.0.0.1:8000/api/order/cart-items/",
+            url: $.cookie('api_base_url') + "/api/order/cart-items/",
             dataType: 'json',
             data: body,
             type: "POST",

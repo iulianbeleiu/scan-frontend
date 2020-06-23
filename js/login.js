@@ -1,4 +1,3 @@
-$.cookie('api_base_url', 'http://127.0.0.1:8000');
 $(document).ready(function () {    
     (function ($) {
         "use strict";
@@ -35,7 +34,7 @@ $(document).ready(function () {
                         type: "POST",
                         data: $(form).serialize(),
                         dataType: 'json',
-                        url: "http://127.0.0.1:8000/api/user/token/",
+                        url: $.cookie('api_base_url') + "/api/user/token/",
                         success: function (data) {
                             $.cookie('token', data.token)
                             $('#loginForm :input').attr('disabled', 'disabled');

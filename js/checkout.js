@@ -1,4 +1,3 @@
-$.cookie('api_base_url', 'http://127.0.0.1:8000');
 $(document).ready(function () {        
     (function ($) {
         "use strict";
@@ -26,7 +25,7 @@ $(document).ready(function () {
                         type: "POST",
                         data: $(form).serialize(),
                         dataType: 'json',
-                        url: "http://127.0.0.1:8000/api/order/cart/",
+                        url: $.cookie('api_base_url') + "/api/order/cart/",
                         "headers": {
                             "Authorization": "Token " + $.cookie('token'),
                         },
@@ -46,7 +45,7 @@ $(document).ready(function () {
 
         //checkout list
         $.ajax({
-            url: "http://127.0.0.1:8000/api/order/cart-items/",
+            url: $.cookie('api_base_url') + "/api/order/cart-items/",
             dataType: 'json',
             type: "GET",
             "headers": {
