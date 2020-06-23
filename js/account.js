@@ -44,7 +44,7 @@ $(document).ready(function () {
                         type: "POST",
                         data: $(form).serialize(),
                         dataType: 'json',
-                        url: "http://127.0.0.1:8000/api/user/create/",
+                        url: $.cookie('api_base_url') + "/api/user/create/",
                         success: function (data) {
                             $('#createAccountForm :input').attr('disabled', 'disabled');
                             $('#createAccountForm').fadeTo("slow", 1, function () {
