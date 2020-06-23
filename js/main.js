@@ -6,6 +6,7 @@
 
 jQuery(document).ready(function($) {
 
+	$.cookie('api_base_url', 'http://127.0.0.1:8000');
 	"use strict";
 
 	var slider = function() {
@@ -200,7 +201,7 @@ jQuery(document).ready(function($) {
 	searchShow();
 
 	$.ajax({
-		url: "http://127.0.0.1:8000/api/order/cart-items/",
+		url: $.cookie('api_base_url') + "/api/order/cart-items/",
 		dataType: 'json',
 		type: "GET",
 		"headers": {
