@@ -33,15 +33,16 @@ $(document).ready(function () {
                     success: function (data) {
                         var i = 0;
                         for (i = 0; i < data.results.length; i++) {
-                            var html = '<div class="col-6 col-md-6 col-lg-4 border-top">';
-                            html += '<a href="shop-single.html" class="item">';
+                            var html = '<div class="col-6 col-md-6 col-lg-4 border-top add-product">';                    
+                            html += '<a href="#" class="item">';                    
                             html += '<img src="' + data.results[i].image + '" alt="Image" class="img-fluid">';
-                            html += '<div class="item-info">';
-                            html += '<h3>' + data.results[i].name + '</h3>';
+                            html += '<div class="item-info" style="bottom: 60px;">';
+                            html += '<h3>' + data.results[i].name + '</h3>';                    
                             html += '<span class="collection d-block">' + data.results[i].description + '</span>';
-                            html += '<strong class="price">$' + data.results[i].price + '</strong>';
-                            html += '<p><a href="cart.html" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a></p>';
-                            html += '</div></a></div>';
+                            html += '<strong class="price">$' + data.results[i].price + '</strong>';                    
+                            html += '</div>'
+                            html += '<button class="btn btn-primary add-to-cart" data-product-name="' + data.results[i].name + '" data-price="' + data.results[i].price + '" data-id="' + data.results[i].id + '">Add to cart</button>';
+                            html += '</a></div>';
     
                             $('#shop_products').append(html)
                         }
@@ -63,20 +64,54 @@ $(document).ready(function () {
                 var i = 0;
                 for (i = 0; i < data.results.length; i++) {
                     var html = '<div class="col-6 col-md-6 col-lg-4 border-top add-product">';                    
-                    html += '<a href="shop-single.html" class="item">';                    
+                    html += '<a href="#" class="item">';                    
                     html += '<img src="' + data.results[i].image + '" alt="Image" class="img-fluid">';
                     html += '<div class="item-info" style="bottom: 60px;">';
                     html += '<h3>' + data.results[i].name + '</h3>';                    
                     html += '<span class="collection d-block">' + data.results[i].description + '</span>';
                     html += '<strong class="price">$' + data.results[i].price + '</strong>';                    
                     html += '</div>'
-                    html += '<button class="btn btn-primary add-to-cart" >Add to cart</button>';
+                    html += '<button class="btn btn-primary add-to-cart" data-product-name="' + data.results[i].name + '" data-price="' + data.results[i].price + '" data-id="' + data.results[i].id + '">Add to cart</button>';
                     html += '</a></div>';
 
                     $('#shop_products').append(html)
                 }
                 $('#next_page').val(data.next);
             }
+        });
+
+        $(document).on('click', '.add-to-cart', function () {
+            $(this).closest('tr').remove();
+    
+            var id = parseInt($(this).attr("data-id"));
+            var name = $(this).attr("data-product-name");
+            var price = parseFloat($(this).attr("data-price"));
+
+            var body = {
+                'name': name,
+                'price': price,
+                'quantity': 1
+              }
+
+            $.ajax({
+                url: $.cookie('api_base_url') + "/api/order/cart-items/",
+                dataType: 'json',
+                data: body,
+                type: "POST",
+                "headers": {
+                  "Authorization": "Token " + $.cookie('token')
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                error: function (err) {
+                },
+                success: function (data) {
+                  $('.number').html(parseInt($('.number').html(), 10) + data.quantity)
+                  $('.number').html()
+                }
+            });
         });
     })(jQuery)
 })
