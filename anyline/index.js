@@ -82,7 +82,7 @@ const Anyline = init({
   viewConfig,
   license: anylicense,
   element: root,
-  anylinePath: '../dealers/anyline/anylinejs'
+  anylinePath: '../anyline/anylinejs'
 });
 
 let modalOpen = false;
