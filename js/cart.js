@@ -30,7 +30,7 @@ $(document).ready(function () {
                     html += '<h2 class="h5 text-black">' + data.results[i].name + '</h2>'
                     html += '<td>' + data.results[i].price + '</td>'
                     html += '<td><div class="input-group mb-3" style="max-width: 120px;"><div class="input-group-prepend"><button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button></div>'
-                    html += '<input type="text" data-id="' + data.results[i].id + '" readonly class="form-control text-center" value="' + data.results[i].quantity + '" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">'
+                    html += '<input type="text" data-price="'+data.results[i].price+'" data-id="' + data.results[i].id + '" readonly class="form-control text-center" value="' + data.results[i].quantity + '" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">'
                     html += '<div class="input-group-append"><button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button></div></div></td>'
                     html += '<td>$' + total_price + '</td>'
                     html += '<td><a href="#" class="btn btn-primary height-auto btn-sm remove-item" data-quantity=' + data.results[i].quantity + ' data-total=' + total_price + ' id="' + data.results[i].id + '">X</a></td>'
@@ -74,6 +74,7 @@ $(document).ready(function () {
     $(document).on('click', '.js-btn-minus', function (e) {
         e.preventDefault();
         var quantity = parseInt($(this).closest('.input-group').find('.form-control').val());
+        price = $(this).closest('.input-group').find('.form-control').attr("data-price");
         if (quantity > 1) {
             if (quantity != 0) {
                 cart_item_id = $(this).closest('.input-group').find('.form-control').attr("data-id");
@@ -93,8 +94,14 @@ $(document).ready(function () {
                     },
                     crossDomain: true,
                     success: function (data) {
-                        $('.number').html(parseInt($('.number').html(), 10) - 1)
-                        $('.number').html()
+                        $('.number').html(parseInt($('.number').html(), 10) - 1);
+                        $('.number').html();
+
+                        cart_total = parseFloat($('#cart_total').val());
+                        cart_total -= parseFloat(price);
+                        
+                        $('#cart_total').val(cart_total);
+                        $('#cartTotal').html("$" + cart_total);
                     }
                 });
                 $(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) - 1);
@@ -107,6 +114,7 @@ $(document).ready(function () {
 
         var quantity = parseInt($(this).closest('.input-group').find('.form-control').val());
         cart_item_id = $(this).closest('.input-group').find('.form-control').attr("data-id");
+        price = $(this).closest('.input-group').find('.form-control').attr("data-price");
         var body = {
             "quantity": quantity + 1
         }
@@ -123,8 +131,14 @@ $(document).ready(function () {
             },
             crossDomain: true,        
             success: function (data) {
-                $('.number').html(parseInt($('.number').html(), 10) + 1)
-                $('.number').html()
+                $('.number').html(parseInt($('.number').html(), 10) + 1);
+                $('.number').html();
+
+                cart_total = parseFloat($('#cart_total').val());
+                cart_total += parseFloat(price);
+
+                $('#cart_total').val(cart_total);
+                $('#cartTotal').html("$" + cart_total);
             }
           });    
           $(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);     
