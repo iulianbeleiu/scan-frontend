@@ -1,7 +1,7 @@
 $(document).ready(function () {        
     (function ($) {
         "use strict";
-        
+        $('#shop').val($.cookie('shop'));
         $(function () {
             $('#checkoutForm').validate({
                 rules: {

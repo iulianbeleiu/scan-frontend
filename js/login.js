@@ -36,7 +36,7 @@ $(document).ready(function () {
                         dataType: 'json',
                         url: $.cookie('api_base_url') + "/api/user/token/",
                         success: function (data) {
-                            $.cookie('token', data.token)
+                            $.cookie('token', data.token);
                             $('#loginForm :input').attr('disabled', 'disabled');
                             $('#loginForm').fadeTo("slow", 1, function () {
                                 $(this).find(':input').attr('disabled', 'disabled');
@@ -44,7 +44,29 @@ $(document).ready(function () {
                                 $('#successLogin').fadeIn()
                                 $('.modal').modal('hide');
                                 $('#successLogin').modal('show');
-                            })
+                            });
+
+                            $.ajax({
+                                url: $.cookie('api_base_url') + "/api/anyline/",
+                                dataType: 'json',
+                                type: "GET",
+                                "headers": {
+                                  "Authorization": "Token " + $.cookie('token'),
+                                },
+                                xhrFields: {
+                                    withCredentials: true
+                                },
+                                crossDomain: true,
+                                error: function (err) {
+                                },
+                                success: function (data) {
+                                    $.cookie('anyline', data[0].licence_text)
+                                }
+                            });
+
+                            $.get($.cookie('api_base_url') + "/api/shop/shops/", function(data, status){
+                                $.cookie('shop', data[0].id);
+                            });
                         },
                         error: function (data) {
                             $('#loginError').empty();
