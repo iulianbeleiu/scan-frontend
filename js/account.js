@@ -89,8 +89,7 @@ $(document).ready(function () {
                     html += '<td>' + data[i].items.length + '</td>'
                     html += '<td>$' + data[i].total + '</td>'
                     html += '<td>' + data[i].created_at + '</td>'
-                    html += '<td><a class="pdf_download" id="'+data[i].id+'" href="#">Download as PDF</a></td>'
-                    html += '<td><a href="#" class="btn btn-primary height-auto btn-sm remove-item"  id="' + data[i].id + '">X</a></td>'
+                    html += '<td><a class="pdf_download" id="'+data[i].id+'" href="#">Download</a></td>'
                     html += '</tr>'
 
                     $('#checkoutTable tbody').prepend(html)
