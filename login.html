@@ -35,6 +35,8 @@
                 <li><a href="shop.html">Shop Now</a></li>
                 <li><a href="scan.html">Start Scanning</a></li>
                 <li><a href="account.html">Your Account</a></li>
+                <li><a href="#" id="login_link">Log In</a></li>
+                <li><a href="#" id="logout_link">Log Out</a></li>
               </ul>
             </nav>
           </div>
@@ -55,12 +57,19 @@
     <div class="site-section mt-5">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 ml-auto">    
-            <h2 class="h3 mb-3 text-black">Login</h2>        
+          <div class="col-md-12 ml-auto">
+            <div class="row mb-5">
+              <div class="col-md-12">
+                <div class="border p-4 rounded" role="alert">
+                  Do not have an account yet? <a href="index.html">Click here</a> to create an account.
+                </div>
+              </div>
+            </div>
+            <h2 class="h3 mb-3 text-black">Login</h2>
             <form action="#" method="post" id="loginForm">
               <div class="p-3 p-lg-5 border">
                 <div class="alert alert-danger d-none" role="alert" id="loginError">
-                  
+
                 </div>
                 <div class="form-group row">
                   <div class="col-md-12">
@@ -79,8 +88,8 @@
                     <input type="submit" class="btn btn-primary btn-lg btn-block" value="Login">
                   </div>
                 </div>
-              </div>              
-            </form>            
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -95,7 +104,7 @@
           </div>
         </div>
       </div>
-    </div>    
+    </div>
   </div>
 
   <script src="js/jquery-3.3.1.min.js"></script>
