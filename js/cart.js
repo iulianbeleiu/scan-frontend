@@ -32,7 +32,6 @@ $(document).ready(function () {
                     html += '<td><div class="input-group mb-3" style="max-width: 120px;"><div class="input-group-prepend"><button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button></div>'
                     html += '<input type="text" data-price="'+data.results[i].price+'" data-id="' + data.results[i].id + '" readonly class="form-control text-center" value="' + data.results[i].quantity + '" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">'
                     html += '<div class="input-group-append"><button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button></div></div></td>'
-                    html += '<td>$' + total_price + '</td>'
                     html += '<td><a href="#" class="btn btn-primary height-auto btn-sm remove-item" data-quantity=' + data.results[i].quantity + ' data-total=' + total_price + ' id="' + data.results[i].id + '">X</a></td>'
                     html += '</tr>'
 
@@ -99,7 +98,7 @@ $(document).ready(function () {
 
                         cart_total = parseFloat($('#cart_total').val());
                         cart_total -= parseFloat(price);
-                        
+
                         $('#cart_total').val(cart_total);
                         $('#cartTotal').html("$" + cart_total);
                     }
@@ -129,7 +128,7 @@ $(document).ready(function () {
             xhrFields: {
                 withCredentials: true
             },
-            crossDomain: true,        
+            crossDomain: true,
             success: function (data) {
                 $('.number').html(parseInt($('.number').html(), 10) + 1);
                 $('.number').html();
@@ -140,7 +139,7 @@ $(document).ready(function () {
                 $('#cart_total').val(cart_total);
                 $('#cartTotal').html("$" + cart_total);
             }
-          });    
-          $(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);     
+          });
+          $(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
     });
 })
